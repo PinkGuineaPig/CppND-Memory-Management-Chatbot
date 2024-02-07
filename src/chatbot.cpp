@@ -39,11 +39,77 @@ ChatBot::~ChatBot()
     {
         delete _image;
         _image = NULL;
+    }else{
+        std::cout << "IN THE ELSE" << std::endl;
     }
 }
 
 //// STUDENT CODE
 ////
+ChatBot::ChatBot(const ChatBot& source){
+
+    std::cout << "ChatBot Copy Constructor" << std::endl;
+
+    _currentNode = source._currentNode;
+    _chatLogic = source._chatLogic;
+    _rootNode  = source._rootNode;
+    _chatLogic = source._chatLogic;
+    _chatLogic->SetChatbotHandle(this);
+    _image = new wxBitmap(*source._image);
+}
+
+ChatBot& ChatBot::operator=(const ChatBot& source){
+
+    std::cout << "ChatBot Copy Assignement Operator" << std::endl;
+
+    if(this != &source){
+        _rootNode  = source._rootNode;
+        _currentNode = source._currentNode;
+        _chatLogic = source._chatLogic;
+        _chatLogic->SetChatbotHandle(this);
+        _image = new wxBitmap(*source._image);
+    }
+
+    return *this;
+}
+
+ChatBot& ChatBot::operator=(ChatBot&& source) noexcept{
+    std::cout << "ChatBot Move Assignement Operator" << std::endl;
+
+    if(this == &source){
+        return *this;
+    }
+
+    _image = source._image;
+    _currentNode = source._currentNode;
+    _rootNode  = source._rootNode;
+    _chatLogic = source._chatLogic;
+    _chatLogic->SetChatbotHandle(this);
+
+
+    source._chatLogic = nullptr;
+    source._rootNode = nullptr;
+    source._image = nullptr;
+    source._currentNode = nullptr;
+
+    return *this;
+}
+
+ChatBot::ChatBot(ChatBot&& source) noexcept{
+
+    std::cout << "ChatBot Move Constructor" << std::endl;
+    _chatLogic = source._chatLogic;
+    _chatLogic->SetChatbotHandle(this);
+    _rootNode  = source._rootNode;
+    _image = source._image;
+    _currentNode = source._currentNode;
+
+    source._chatLogic = nullptr;
+    source._rootNode = nullptr;
+    source._image = NULL;
+    source._currentNode = nullptr;
+
+};
 
 ////
 //// EOF STUDENT CODE

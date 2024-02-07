@@ -1,0 +1,21 @@
+// .vscode/c_cpp_properties.json
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/src",
+                "/usr/lib/x86_64-linux-gnu/wx/include/gtk3-unicode-3.0",
+                "/usr/include/wx-3.0",
+                "${workspaceFolder}/**"
+                // Add your additional include paths here
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "clang-x64"
+        }
+    ],
+    "version": 4
+}
